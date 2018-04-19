@@ -27,7 +27,7 @@ https://xss-game.appspot.com/
 
 #### Level 1
 
-In order to beat this level, I simply queried ```<script>alert()</script>``` in the applications search bar, this was the correct answer and allowed me to move on to the next level.
+In order to beat this level, I tried querieng many things in the search bar, but realizing that I had to run a script with an alert in it I simply queried ```<script>alert()</script>``` in the applications search bar, to my surprise this was the correct answer and allowed me to move on to the next level!
 
 #### Level 2
 
