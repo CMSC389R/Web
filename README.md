@@ -36,4 +36,17 @@ This level was more difficult to figure out than the last one, initially I tried
 
 ### Level 3
 
+For this level, I used a hint that told me ```To locate the cause of the bug, review the JavaScript to see where it handles user-supplied input.```, so I looked over the code and realized this line: ```html += "<img src='/static/level3/cloud" + num + ".jpg' />";``` had a potential vulnerability. I could cause the image source to be something non-existant and then use ```onerror = alert();``` to be able to create an alert. My first attempt I used this URL: ```https://xss-game.appspot.com/level3/frame#' onerror = alert()``` but got this page:
+
+![alt text]()
+
+But after realizing that I needed to format the html element in a way that would be equivelent to ```html += "<img src='/static/level3/cloud" + num + ".jpg' />";```, I used this to produce the desired result: ```https://xss-game.appspot.com/level3/frame#0.jpg' onerror=alert();'```
+
+### Level 4
+
+For this level I took what I learned from the last level and searched for where the user input was bieng handled, I located one line of code that could be potentially vulnerable: ```<img src="/static/loading.gif" onload="startTimer('{{ timer }}');" />```. I thought that if I could replace the user input {{timer}} with something that would run my alert. So after some trial and error I used ```')alert('``` to produce the desired result.
+
+### Level 5
+
+
 
