@@ -48,5 +48,11 @@ For this level I took what I learned from the last level and searched for where 
 
 ### Level 5
 
+Originally I tried injecting new things into the sign up bar, just like the previous few levels, but after a long run of unsuccesful attempts, I decided to try a different approach, the only other vulnerabilities I could think of is changing authorization using cookies, or manipulating the URL. Cookies were not relevant here so I tried messing with the URL, while looking over the code I noticed the ```next``` parameter would change with each new template render, so I thought i'd target that. I tried substituting ```alert()``` for confirm in the URL: ```https://xss-game.appspot.com/level5/frame/signup?next=confirm```, but this did not work. I noticed that I needed some way for the alert() to actually run, and not be just treated as part of the URL. So after some research I discovered that I could use ```javascript:alert()``` to achieve what I wanted to do, using this URL I managed to beat this level: ```https://xss-game.appspot.com/level5/frame/signup?next=javascript:alert()```
+
+### Level 6
+
+For this problem I realized that the only 
+
 
 
