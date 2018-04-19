@@ -11,12 +11,12 @@ Submit the usual CMSC389R flag with your writeup to demonstrate that you success
 
 I began with trying an xss attack by adding this to the URL ```https://bigbenbargains.biz/briongshop/item?id=<script>alert('OhNo!');</script>```, this seemed to cause a server error:
 
-![alt text]()
+![alt text](https://github.com/yreiss1/Web/blob/master/Server%20Error.png)
 
 
 Next, I built upon my assumption that all the "items" and their information were stored in an SQL table somewhere, so I thought using some sort of SQL injection could work. I began buidling my injection by taking the SQL injection from the slides and modifying it to get this URL: ```https://bigbenbargains.biz/briongshop/item?id=1' OR '1'='1' -- -``` hoping that I could get ```id``` to evaluate to true, and then dump all the information. This proved succesful and I got this page with this flag: ```CMSC389R-{u_ar3_th3_SQL_ninja}``` 
 
-![alt text]()
+![alt text](https://github.com/yreiss1/Web/blob/master/Flag.png)
 
 
 ## Part 2
@@ -33,12 +33,14 @@ In order to beat this level, I simply queried ```<script>alert()</script>``` in 
 
 This level was more difficult to figure out than the last one, initially I tried to insert ```<script>alert();<\script>``` as a new status and in the URL, neither of these seemed to work. I tried an SQL injection using ```'1'='1' -- -``` just like I did in part 1 of this assignment, and that didn't work. While, looking at the source code I noticed that they did not do a good job of sanitizing input, and if I couldnt run javascript the same way I ran in Level 1 that I could hide it in some other form. In order to do this I simply added ```onerror = alert()``` to the URL which would run the javascript alert when the application encountered an error. Using this I suceeded and was allowed to move to the 3rd level.
 
+![alt text](https://github.com/yreiss1/Web/blob/master/Level2.png)
+
 
 ### Level 3
 
 For this level, I used a hint that told me ```To locate the cause of the bug, review the JavaScript to see where it handles user-supplied input.```, so I looked over the code and realized this line: ```html += "<img src='/static/level3/cloud" + num + ".jpg' />";``` had a potential vulnerability. I could cause the image source to be something non-existant and then use ```onerror = alert();``` to be able to create an alert. My first attempt I used this URL: ```https://xss-game.appspot.com/level3/frame#' onerror = alert()``` but got this page:
 
-![alt text]()
+![alt text](https://github.com/yreiss1/Web/blob/master/Level3.png)
 
 But after realizing that I needed to format the html element in a way that would be equivelent to ```html += "<img src='/static/level3/cloud" + num + ".jpg' />";```, I used this to produce the desired result: ```https://xss-game.appspot.com/level3/frame#0.jpg' onerror=alert();'```
 
@@ -68,7 +70,7 @@ that led me to believe that I could use a site like pastebin to host my code, wh
 
 Here is the final picture!:
 
-![alt text]()
+![alt text](https://github.com/yreiss1/Web/blob/master/Final.png)
 
 
 
